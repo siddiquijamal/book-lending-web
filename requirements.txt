@@ -1,15 +1,16 @@
 Django==5.2.6
 asgiref==3.9.1
-mysql-connector-python==9.4.0   # Only if using MySQL, else use psycopg2 for PostgreSQL
+mysql-connector-python==9.4.0
 sqlparse==0.5.3
 python-dateutil==2.9.0.post0
 pytz==2025.2
 requests==2.32.3
 bleach==6.1.0
 beautifulsoup4==4.12.3
-lxml==5.1.2   # Optional, if you use XML/HTML parsing
+lxml==6.0.2
+Jinja2==3.1.4
+MarkupSafe==2.1.5
 certifi==2024.8.30
 charset-normalizer==3.3.2
 idna==3.10
 urllib3==2.2.3
-click==8.2.1   # Useful for management commands
