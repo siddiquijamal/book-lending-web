@@ -16,6 +16,8 @@ idna==3.10
 urllib3==2.2.3
 gunicorn==23.0.0
 PyMySQL==1.1.1
+djangorestframework==3.20.0
+
 
 
 
