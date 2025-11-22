@@ -14,4 +14,4 @@ certifi==2024.8.30
 charset-normalizer==3.3.2
 idna==3.10
 urllib3==2.2.3
-gunicorn==22.2.2
+gunicorn==23.1.0
