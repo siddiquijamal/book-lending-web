@@ -1,0 +1,364 @@
+{% load static %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BooK LANDING TRACKER</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+  >
+  <!-- Optional: Bootstrap Icons for search icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+ 
+</head>
+<body class="bg-light">
+
+  <div class="container mt-3">
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom px-3">
+      <!-- Left side: Logo + Name -->
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <!-- <img src="book-logo.png" alt="Book Logo"> -->
+		  <i class="bi bi-book fs-3 me-2"></i>
+        <span class="fw-bold fs-5">BooK LANDING TRACKER</span>
+      </a>
+
+      <!-- Toggler for mobile -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarRight"
+        aria-controls="navbarRight"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Right side: Buttons -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarRight">
+        <div class="d-flex gap-2 mt-2 mt-lg-0">
+          <a href="{% url 'signuppage' %}"  class="btn btn-outline-light btn-sm">Sign In</a>
+
+          <button class="btn btn-outline-light btn-sm">Help</button>
+        </div>
+      </div>
+    </nav>
+    <div> 
+      <marquee direction = "right" scrollamount = 20> Welcome to our book lending website  <b> {{message}}<b>!!    </marquee>
+    </div>
+
+    <!-- Bottom Search Bar -->
+    <div class="search-bar d-flex justify-content-center">
+      <div class="input-group w-75">
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Search by Title, Author"
+          aria-label="Search"
+        >
+        <button class="btn btn-primary search-btn" type="button">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Promo Section -->
+<!-- Promo Section -->
+<section class="promo-section py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Text Column -->
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h1 class="fw-bold display-5 mb-3">
+          Rent unlimited <br> books
+        </h1>
+        <p class="text-secondary fs-5 mb-4">
+          Renting books saves you time, money, shelf space, and the environment!
+        </p>
+
+        <!-- Benefits Row -->
+        <div class="d-flex flex-wrap gap-3 text-danger fw-semibold mb-4">
+          <span>FREE Shipping</span>
+          <span class="text-muted">|</span>
+          <span>Cancel Anytime</span>
+          <a href = "{% url 'allbooks' %}"> see all books </a>
+        </div>
+
+        <!-- Red Offer Bar -->
+        <div class="bg-danger text-white d-flex align-items-center p-3 rounded">
+          <strong class="me-auto fs-5">50% OFF</strong>
+          <span class="me-3">any monthly membership plan</span>
+          <a href="{% url 'signuppage' %}" class="btn btn-outline-light btn-sm">Sign Up Now</a>
+        </div>
+      </div>
+
+      <!-- Image Column -->
+      <div class="col-lg-6 text-center">
+        <img src="{% static 'images/bookImage.jpg' %}" alt="Reading book" class="promo-img img-fluid rounded">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hot Rentals Section -->
+<!-- Hot Rentals Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="fw-bold mb-0">Hot Rentals</h2>
+      {% comment %} <a href = "{% url 'allbooks' %}"> All books </a> {% endcomment %}
+      <!-- <a href="all.html" class="text-decoration-none">See All</a> -->
+    </div>
+
+    <!-- Carousel -->
+    <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- ===== Slide 1 ===== -->
+
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-4">
+          {% for book in books %}
+          <div class="col">
+            <div class="card h-100 border-0 text-center">
+              <img src="{{book.photo.url}}" class="card-img-top rounded shadow-sm" alt="{{book.title}}">
+              <div class="card-body p-2">
+                <h6 class="card-title text-truncate">{{book.title}}</h6>
+                <p class="text-muted small mb-0">{{book.author}}</p>
+              </div>
+              <div class="card-body pt-0">
+                  <a href="{% url 'buyingpage' book.id  %}" class="btn btn-primary btn-sm me-2">Buy</a>
+                  <a href="{% url 'lendingpage' book.id  %}" class="btn btn-outline-success btn-sm">Lend</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        </div>
+
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Borrower Details Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-center">Borrower Details</h2>
+
+    <form class="p-4 rounded shadow-sm bg-light" method ="POST">
+      {% csrf_token %}
+      <div class="row g-3">
+        <!-- Row 1 -->
+        <div class="col-md-4">
+          <label for="name"  class="form-label fw-semibold">User Name</label>
+          <input type="text" name = "username" class="form-control" id="name" placeholder="Enter your  user name " required>
+        </div>
+        <div class="col-md-4">
+          <label for="name"  class="form-label fw-semibold">Full Name</label>
+          <input type="text" name = "fullname" class="form-control" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="col-md-4">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <input type="email"  name = "email"  class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="col-md-4">
+          <label for="phone" class="form-label fw-semibold">Phone Number</label>
+          <input type="tel" name = "phno" class="form-control" id="phone" placeholder="Enter phone number" required>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="col-md-4">
+          <label for="dob" class="form-label fw-semibold">Date of Birth</label>
+          <input type="date" name = "dob" class="form-control" id="dob" required>
+        </div>
+        <div class="col-md-4">
+          <label for="borrowDate" class="form-label fw-semibold">Borrow Date</label>
+          <input type="date" name = "borrowdate" class="form-control" id="borrowDate" required>
+        </div>
+        <div class="col-md-4">
+          <label for="returnDate" class="form-label fw-semibold">Return Date</label>
+          <input type="date" name = "returndate" class="form-control" id="returnDate" required>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5" formaction="/booklender/borrowerdetails/">Submit</button>
+      </div>
+    </form>
+     <span>{{message}} </span>
+  </div>
+
+  {% comment %} <span>{{message}} </span> {% endcomment %}
+</section>
+
+
+<!-- Recommended Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">What Readers Are Saying</h2>
+      <a href="{% url 'reviewpage' %}" class="btn btn-primary mt-2">Give Review</a> <br>
+
+    </div>
+
+    <div class="row g-4 justify-content-center">
+
+      {% for rev in reviews %}
+      <div class="col-md-4">
+        <div class="card shadow-sm border-0 h-100 text-center p-3">
+          <h5 class="fw-bold">{{ rev.book_title }}</h5>
+          <p class="text-muted mb-1">By: {{ rev.username }}</p>
+          <p>{{ rev.review_text|truncatewords:25 }}</p>
+
+          <div class="mt-2">
+            {% for i in "12345" %}
+              {% if forloop.counter <= rev.rating %}
+                <span style="color:#FFD700;">★</span>
+              {% else %}
+                <span style="color:#dcdcdc;">★</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="d-flex justify-content-center gap-2 mt-3">
+            {% comment %} {% if rev.user == request.user %}
+                {% comment %} <a href="{% url 'editreview' rev.id %}" class="btn btn-outline-primary btn-sm">Edit</a> {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
+
+            <a href="#" class="btn btn-outline-danger btn-sm"
+               onclick="return confirm('Delete this review?')">Delete</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="{% url  'allreviews' %}" class="btn btn-success">See All Reviews</a>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Font Awesome for quote and stars -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container text-md-left">
+    <div class="row text-md-left">
+      
+      <!-- About Section -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Book Tracker</h5>
+        <p>Track borrowed and returned books easily. Manage your lending efficiently and never miss a return date!</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Quick Links</h5>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Home</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Borrow Book</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Return Book</a></p>
+        <p><a href="#" class="text-white" style="text-decoration: none;">Contact</a></p>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contact</h5>
+        <p><i class="fas fa-home mr-3"></i> 123 Book St, City, Country</p>
+        <p><i class="fas fa-envelope mr-3"></i> info@booktracker.com</p>
+        <p><i class="fas fa-phone mr-3"></i> +123 456 7890</p>
+      </div>
+
+      <!-- Social Media -->
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Follow Us</h5>
+        <a href="#" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white me-4"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+    </div>
+
+    <hr class="mb-4">
+    
+    <!-- Copyright -->
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-8">
+        <p>© 2025 Book Tracker. All rights reserved.</p>
+      </div>
+      <div class="col-md-5 col-lg-4">
+        <p>Designed by <a href="#" class="text-warning">Jamal Siddiqui</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+  // Stop carousel sliding when interacting with buttons/links inside it
+  const reviewCarousel = document.getElementById('reviewCarousel');
+
+  reviewCarousel.addEventListener('click', function(e) {
+    e.stopPropagation(); 
+  });
+</script>
+
+</body>
+
+</html>

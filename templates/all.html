@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+    <link rel="stylesheet" href="{% static 'css/see_all.css'  %}">
+</head>
+<body>
+
+<h1 class="page-title">Available Books</h1>
+
+<div class="book-container">
+
+    {% for book in books %}
+    <div class="book-card">
+        <img src="{{ book.photo.url }}" alt="{{ book.title }}">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <p class="author">Author: {{ book.author }}</p>
+        <p class="desc">
+            {% if book.description %}
+                {{ book.description }}
+            {% else %}
+                <!-- Optional: auto-generate description using AI -->
+                No description available.
+            {% endif %}
+        </p>
+        <a href="{% url 'lendingpage' book.id %}" class="btn">Borrow Book</a>
+        <a href="{% url 'buyingpage' book.id  %}" class="btn btn-primary btn-sm me-2">Buy</a>
+    </div>
+    {% empty %}
+    <p>No books available at the moment.</p>
+    {% endfor %}
+
+    <div class="text-center my-5">
+        <a href="{% url 'backtohome' %}" class="btn btn-primary px-4 py-2">
+        ← Back to Home
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

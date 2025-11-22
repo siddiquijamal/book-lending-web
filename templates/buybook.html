@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Book</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f7f7ff, #e9e8ff);
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .book-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      padding: 30px;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .buy-btn {
+      background: linear-gradient(135deg, #6c63ff, #4b47d6);
+      color: #fff;
+      border-radius: 10px;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+    .buy-btn:hover {
+      background: linear-gradient(135deg, #5a54e8, #3d3abf);
+      transform: scale(1.05);
+    }
+
+    .quantity-input {
+      max-width: 100px;
+    }
+
+    .price-display {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4b47d6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="book-card text-center">
+		<img src="{{ book.photo.url }}" class="img-fluid rounded mb-4 shadow-sm" style="max-height: 300px;">
+
+        <h2 class="fw-bold mb-2">{{book.title}}</h2>
+        <p class="text-muted mb-3">{{book.author}}</p>
+
+        <p class="text-secondary mb-4">
+          {{book.description}}
+        </p>
+
+        <div class="mb-3">
+          <label for="quantity" class="form-label fw-semibold">Quantity</label>
+          <input type="number" id="quantity" class="form-control quantity-input mx-auto" value="1" min="1">
+        </div>
+
+        <div class="mb-4">
+          <p class="price-display">Total: $<span id="totalPrice">20.00</span></p>
+        </div>
+
+        <a href="{% url 'download_book' book.id %}" class="btn btn-primary btn-sm me-2">Buy Now</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const quantityInput = document.getElementById('quantity');
+  const totalPrice = document.getElementById('totalPrice');
+  const pricePerBook = 20; // Example price
+
+  quantityInput.addEventListener('input', () => {
+    const qty = parseInt(quantityInput.value) || 1;
+    totalPrice.textContent = (pricePerBook * qty).toFixed(2);
+  });
+</script>
+
+</body>
+</html>

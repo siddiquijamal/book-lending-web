@@ -1,0 +1,87 @@
+
+<style>
+
+ body {
+  background: linear-gradient(135deg, #e9e8ff, #f7f7ff);
+  min-height: 100vh;
+}
+
+
+
+  .review-card {
+  background: #ffffffd9;
+  backdrop-filter: blur(6px);
+  border: 1px solid #eee;
+}
+
+.modern-input {
+  border-radius: 10px;
+  transition: 0.3s;
+  border: 1px solid #d0d0d0;
+}
+
+.modern-input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 6px rgba(108, 99, 255, 0.4);
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #6c63ff, #4b47d6);
+  color: white;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #5a54e8, #3d3abf);
+  transform: scale(1.02);
+}
+
+  
+
+</style>
+
+
+
+
+<div class="col-md-6 col-lg-5 mx-auto">
+  <div class="review-card p-4 rounded-4 shadow-lg">
+
+    <h3 class="text-center mb-4 fw-bold">Share Your Review</h3>
+
+    <form action="{% url 'addreview' %}" method="POST">
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> User Name</label>
+        <input type="text" name="username" class="form-control modern-input" placeholder="e.g. jamal_12" required>
+
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Book Title</label>
+        <input type="text" name="book_title" class="form-control modern-input" placeholder="e.g. The Forest Day" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Your Review</label>
+        <textarea name="review_text" class="form-control modern-input" rows="4" placeholder="Write something meaningful..." required></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label fw-semibold">Rating</label>
+        <select name="rating" class="form-select modern-input" required>
+          <option value="5">★★★★★ - Excellent</option>
+          <option value="4">★★★★☆ - Good</option>
+          <option value="3">★★★☆☆ - Average</option>
+          <option value="2">★★☆☆☆ - Poor</option>
+          <option value="1">★☆☆☆☆ - Very Bad</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn submit-btn w-100 py-2 fw-semibold">Submit Review</button>
+    </form>
+
+  </div>
+  <span>  {{message}}  </span>
+</div>

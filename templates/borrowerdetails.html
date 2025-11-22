@@ -1,0 +1,50 @@
+
+<!-- Borrower Details Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-center">Borrower Details</h2>
+
+    <form class="p-4 rounded shadow-sm bg-light" method ="POST">
+      {% csrf_token %}
+      <div class="row g-3">
+        <!-- Row 1 -->
+        <div class="col-md-4">
+          <label for="name"  class="form-label fw-semibold">User Name</label>
+          <input type="text" name = "username" class="form-control" id="name" placeholder="Enter your  user name " required>
+        </div>
+        <div class="col-md-4">
+          <label for="name"  class="form-label fw-semibold">Full Name</label>
+          <input type="text" name = "fullname" class="form-control" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="col-md-4">
+          <label for="email" class="form-label fw-semibold">Email</label>
+          <input type="email"  name = "email"  class="form-control" id="email" placeholder="Enter your email" required>
+        </div>
+        <div class="col-md-4">
+          <label for="phone" class="form-label fw-semibold">Phone Number</label>
+          <input type="tel" name = "phno" class="form-control" id="phone" placeholder="Enter phone number" required>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="col-md-4">
+          <label for="dob" class="form-label fw-semibold">Date of Birth</label>
+          <input type="date" name = "dob" class="form-control" id="dob" required>
+        </div>
+        <div class="col-md-4">
+          <label for="borrowDate" class="form-label fw-semibold">Borrow Date</label>
+          <input type="date" name = "borrowdate" class="form-control" id="borrowDate" required>
+        </div>
+        <div class="col-md-4">
+          <label for="returnDate" class="form-label fw-semibold">Return Date</label>
+          <input type="date" name = "returndate" class="form-control" id="returnDate" required>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary px-5" formaction="/booklender/borrowerdetails/">Submit</button>
+      </div>
+    </form>
+     <span>{{message}} </span>
+  </div>
+</section>
