@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.signup-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 40px 35px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.signup-box h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.signup-box input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.signup-box input::placeholder {
+    color: #e3e3e3;
+}
+
+.signup-box input:focus {
+    background: rgba(255,255,255,0.4);
+}
+
+.signup-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-box button:hover {
+    background: #f1f1f1;
+}
+
+.signup-box p {
+    margin-top: 15px;
+    color: #eee;
+}
+
+.signup-box a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}

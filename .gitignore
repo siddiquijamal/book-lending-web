@@ -3,9 +3,7 @@ __pycache__/
 *.pyc
 
 # Django
-media/
-static/
-staticfiles/
+
 
 # Virtual Environment
 vnev/
