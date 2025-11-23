@@ -80,14 +80,11 @@ WSGI_APPLICATION = 'books.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'books',
-        'USER':  'root',
-        'PASSWORD' : 'mharani',
-        'HOST':'localhost',
-        'PORT':  '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
